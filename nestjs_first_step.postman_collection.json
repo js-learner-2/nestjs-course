@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "672b413e-b80a-4e18-980d-a9a4c6d9f64b",
+		"name": "nestjs_first_step",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6209807"
+	},
+	"item": [
+		{
+			"name": "courses",
+			"item": [
+				{
+					"name": "courses",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/courses",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "courses",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"seqNo\": 101,\n\t\"url\": \"\",\n\t\"iconUrl\": \"\",\n\t\"courseListIcon\": \"\",\n\t\"description\": \"Hola Madrid\",\n\t\"longDescription\": \"Hola America\",\n\t\"category\": \"trip\",\n\t\"lessonsCount\": 100,\n\t\"promo\": true\n}\n/*\n{\n\t\"seqNo\": 101,\n\t\"url\": \"\",\n\t\"iconUrl\": \"\",\n\t\"courseListIcon\": \"\",\n\t\"description\": \"Hola Madrid\",\n\t\"longDescription\": \"Hola America\",\n\t\"category\": \"trip\",\n\t\"lessonsCount\": 100,\n\t\"promo\": true\n}\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/courses",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "courses",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"seqNo\": 101,\n\t\"url\": \"\",\n\t\"iconUrl\": \"\",\n\t\"courseListIcon\": \"\",\n\t\"description\": \"Hola Madrid\",\n\t\"longDescription\": \"Hola American\",\n\t\"category\": \"trip\",\n\t\"lessonsCount\": 100,\n\t\"promo\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/courses/:courseID",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"courses",
+								":courseID"
+							],
+							"variable": [
+								{
+									"key": "courseID",
+									"value": "66b3a55cfb43a14e3b8f7c6a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "courses",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/courses/:courseID",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"courses",
+								":courseID"
+							],
+							"variable": [
+								{
+									"key": "courseID",
+									"value": "66b588c8fd8912d091665d9b"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "lessons",
+			"item": [
+				{
+					"name": "lessons",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/lessons?courseId=66b3aed4165ee1862b7d719e",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"lessons"
+							],
+							"query": [
+								{
+									"key": "courseId",
+									"value": "66b3aed4165ee1862b7d719e"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mr.nestjs@gmail.com\",\n    \"password\": \"root\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mr.nestjs@gmail.com\",\n    \"password\": \"roott\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "localhost:9000/api",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1yLm5lc3Rqc0BnbWFpbC5jb20iLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaWF0IjoxNzIzMjgxNjEzfQ.OpoHmfkZwKdcrYgRjp28MtdxEAIOjvMAsSaAfvql4DI",
+			"type": "string"
+		}
+	]
+}
