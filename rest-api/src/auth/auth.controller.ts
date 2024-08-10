@@ -4,17 +4,54 @@ import {InjectModel} from '@nestjs/mongoose';
 import * as password from 'password-hash-and-salt';
 import * as jwt from 'jsonwebtoken';
 import {JWT_SECRET} from '../constants';
+import {User} from '../../../shared/user';
+import { AuthRepository } from './auth.repository';
+import { resolve } from 'dns';
 
 
-@Controller("login")
+@Controller("auth")
 export class AuthController {
 
     constructor(
-        @InjectModel("User") private userModel: Model) {
+        @InjectModel("User") private userModel: Model,
+        private authDB: AuthRepository) {
 
     }
 
-    @Post()
+    @Post("register")
+    async register(
+        @Body("email") email: string,
+        @Body("password") pwd: string
+    ) {
+        console.log("creating new user");
+
+        return new Promise((resolve, reject) => {
+            password(pwd).hash((error, hash) => {
+                if (error) {
+                    throw new Error('Cannot hash!');
+                }
+            
+                // Store the hash in your database
+                console.log('Hashed Password:', hash);
+
+                const user: User = {
+                    email: email,
+                    roles: ["ADMIN", "USER"],
+                    passwordHash: hash
+                };
+                
+                this.authDB.addUser(user)
+
+                const authJwtToken =
+                        jwt.sign({email, roles: user.roles},
+                            JWT_SECRET);
+
+                resolve({authJwtToken});
+            });
+        })
+    }
+
+    @Post("login")
     async login(@Body("email") email:string,
         @Body("password") plaintextPassword:string) {
 
